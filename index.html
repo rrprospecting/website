@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>R&R Prospecting | From Discovery to Reclamation</title>
+
+  <meta
+    name="description"
+    content="R&R Prospecting provides mineral exploration, prospecting, small-scale mining support, consulting, education, and reclamation planning."
+  >
+
+  <style>
+    :root {
+      --black: #080a0c;
+      --charcoal: #11161a;
+      --slate: #1b2328;
+      --gold: #d5ad48;
+      --light-gold: #f0d27c;
+      --cream: #f3efe4;
+      --muted: #b9b6ad;
+      --line: rgba(213, 173, 72, 0.28);
+      --panel: rgba(17, 22, 26, 0.92);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--cream);
+      background:
+        radial-gradient(circle at top left, rgba(213, 173, 72, 0.12), transparent 35%),
+        linear-gradient(180deg, var(--black), #0b0f12 55%, var(--black));
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    .container {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(8, 10, 12, 0.92);
+      backdrop-filter: blur(12px);
+    }
+
+    .navigation {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand span { color: var(--gold); }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    nav a:hover { color: var(--light-gold); }
+
+    .hero {
+      position: relative;
+      min-height: 82vh;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, rgba(5, 7, 8, 0.96), rgba(5, 7, 8, 0.63)),
+        linear-gradient(135deg, #151c21, #07090b 70%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 38%;
+      opacity: 0.65;
+      background:
+        linear-gradient(145deg, transparent 45%, #12191e 46% 55%, transparent 56%),
+        linear-gradient(35deg, transparent 42%, #1b252b 43% 57%, transparent 58%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      padding: 90px 0;
+    }
+
+    .eyebrow {
+      margin-bottom: 14px;
+      color: var(--gold);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 850px;
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    h1 span { color: var(--light-gold); }
+
+    .hero h2 {
+      margin: 24px 0 12px;
+      font-size: clamp(1.4rem, 4vw, 2.25rem);
+      color: var(--cream);
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 13px 18px;
+      border: 1px solid var(--gold);
+      border-radius: 5px;
+      color: #0b0d0f;
+      background: var(--gold);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .button.secondary {
+      color: var(--cream);
+      background: transparent;
+    }
+
+    section { padding: 84px 0; }
+
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 32px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.05;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+    }
+
+    .card-number {
+      color: var(--gold);
+      font-weight: 900;
+      letter-spacing: 0.12em;
+    }
+
+    .card h3 {
+      margin: 10px 0 8px;
+      font-size: 1.25rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .mission {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(213, 173, 72, 0.08), transparent 50%),
+        #0d1215;
+    }
+
+    .mission-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .statement {
+      padding-left: 24px;
+      border-left: 4px solid var(--gold);
+      font-size: clamp(1.5rem, 4vw, 2.7rem);
+      line-height: 1.25;
+      font-weight: 800;
+    }
+
+    .mission p { color: var(--muted); }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .process-step {
+      padding: 22px 18px;
+      border-top: 3px solid var(--gold);
+      background: #11171b;
+    }
+
+    .process-step strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1.08rem;
+    }
+
+    .process-step span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .contact-box {
+      padding: 38px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(213, 173, 72, 0.12), transparent 55%),
+        var(--charcoal);
+    }
+
+    .contact-box h2 {
+      margin-top: 0;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+    }
+
+    .contact-box p {
+      max-width: 700px;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-layout {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 850px) {
+      .navigation {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 18px 0;
+      }
+
+      nav { gap: 13px; }
+
+      .grid,
+      .process,
+      .mission-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero { min-height: 74vh; }
+
+      section { padding: 64px 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container navigation">
+      <a class="brand" href="#home">R&amp;R <span>Prospecting</span></a>
+
+      <nav>
+        <a href="#about">About</a>
+        <a href="#services">Capabilities</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <div class="eyebrow">Mineral Exploration &amp; Small-Scale Mining</div>
+
+        <h1>R&amp;R <span>Prospecting</span></h1>
+
+        <h2>From Discovery to Reclamation.</h2>
+
+        <p>
+          Building practical mineral projects through geological research,
+          responsible exploration, field testing, mining-operation planning,
+          education, consulting, and long-term stewardship.
+        </p>
+
+        <div class="buttons">
+          <a class="button" href="#services">Explore Our Capabilities</a>
+          <a class="button secondary" href="#contact">Contact R&amp;R</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Who We Are</div>
+
+          <h2>A field-driven exploration company built for the full project life cycle.</h2>
+
+          <p>
+            R&amp;R Prospecting is developing into a full small-mining and
+            mineral-exploration operation. Our focus extends beyond locating
+            valuable ground. We approach projects from early research and
+            target generation through testing, operational planning,
+            responsible production, and reclamation.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="card-number">01</div>
+            <h3>Grounded in Fieldwork</h3>
+            <p>
+              Decisions are built from mapping, sampling, observation,
+              practical testing, and direct experience on the ground.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">02</div>
+            <h3>Research Before Equipment</h3>
+            <p>
+              Geological structure, mineral history, access, land status,
+              and recovery potential are evaluated before major resources
+              are committed.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-number">03</div>
+            <h3>Responsible Development</h3>
+            <p>
+              Safety, documentation, reclamation, land stewardship, and
+              regulatory awareness are treated as core parts of every project.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="mission">
+      <div class="container mission-layout">
+        <div class="statement">
+          Discover.<br>
+          Evaluate.<br>
+          Develop.<br>
+          Restore.
+        </div>
+
+        <div>
+          <div class="eyebrow">Our Mission</div>
+
+          <h2>Build productive mineral projects without losing sight of the land.</h2>
+
+          <p>
+            Our long-term mission is to identify and responsibly develop
+            valuable mineral resources while building practical knowledge
+            that can be shared with prospectors, landowners, project partners,
+            and future generations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Capabilities</div>
+
+          <h2>One operation. Every stage of the project.</h2>
+
+          <p>
+            R&amp;R Prospecting is being built to serve projects from the first
+            research question through field evaluation, development,
+            production support, and reclamation.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Prospecting &amp; Target Generation</h3>
+            <p>
+              Regional research, drainage selection, structural targeting,
+              mineral-occurrence review, and field-priority planning.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Mineral Exploration</h3>
+            <p>
+              Geological observations, mapping, sampling programs, test grids,
+              trench and auger concepts, and exploration documentation.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Small Mining Operations</h3>
+            <p>
+              Practical planning for hand methods and small equipment,
+              material handling, recovery systems, field logistics, and
+              production workflow.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Mine Planning Support</h3>
+            <p>
+              Start-to-finish operational planning, access considerations,
+              testing phases, equipment needs, sequencing, and decision points.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Consulting &amp; Evaluation</h3>
+            <p>
+              Preliminary claim and project review, research organization,
+              risk identification, sampling strategy, and practical second
+              opinions.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Reclamation Planning</h3>
+            <p>
+              Reclamation concepts developed alongside exploration and mining
+              plans—not treated as an afterthought at the end.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Education &amp; Training</h3>
+            <p>
+              Field guides, prospecting education, geological fundamentals,
+              sampling instruction, and practical exploration systems.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Project Documentation</h3>
+            <p>
+              Field worksheets, sampling logs, maps, photographs, project
+              records, research summaries, and repeatable decision systems.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Future Resource Development</h3>
+            <p>
+              Gold remains a major focus, with room to expand into gemstones,
+              base metals, industrial minerals, and other mineable resources.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Project Method</div>
+
+          <h2>From the first map to the final restored surface.</h2>
+        </div>
+
+        <div class="process">
+          <div class="process-step">
+            <strong>1. Discover</strong>
+            <span>Research geology, history, structure, access, and mineral potential.</span>
+          </div>
+
+          <div class="process-step">
+            <strong>2. Evaluate</strong>
+            <span>Map, sample, test, document, compare, and apply clear stop rules.</span>
+          </div>
+
+          <div class="process-step">
+            <strong>3. Develop</strong>
+            <span>Build a practical operation around proven ground and realistic equipment.</span>
+          </div>
+
+          <div class="process-step">
+            <strong>4. Reclaim</strong>
+            <span>Restore disturbed ground and complete the project responsibly.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div class="eyebrow">Contact</div>
+
+          <h2>R&amp;R Prospecting is just getting started.</h2>
+
+          <p>
+            This website is under active development. Future updates will
+            include exploration projects, field reports, educational material,
+            photo and video galleries, consulting information, and company
+            contact details.
+          </p>
+
+          <p>Website: <strong>rrprospecting.com</strong></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-layout">
+      <div>© <span id="year"></span> R&amp;R Prospecting</div>
+      <div>From Discovery to Reclamation</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
